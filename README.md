@@ -2,8 +2,6 @@
 
 This repository contains a PyTorch implementation of the Transformer model, as introduced in the paper "Attention Is All You Need". The project is designed to be a clear and educational resource for understanding and building the Transformer architecture from the ground up.
 
-A complete, step-by-step video tutorial for this implementation is available on YouTube: [Attention is All You Need: Implementation in PyTorch](https://www.youtube.com/watch?v=ISNdQcPhsts)
-
 ---
 
 ## Table of Contents
@@ -142,3 +140,23 @@ To train the Transformer model, run the `train.py` script. You can customize the
 
 ```bash
 python train.py
+```
+---
+
+## Model Evaluation and ONNX Export
+
+After training, you can evaluate the model's performance and export it to the ONNX (Open Neural Network Exchange) format for optimized, platform-agnostic inference.
+```bash
+python export_onnx.py
+```
+---
+
+### Evaluating the Model (BLEU Score)
+
+To evaluate the translation quality of the trained model, you can calculate the BLEU score on the validation dataset. The `evaluate_bleu.py` script handles this process.
+
+**1. Run the evaluation script:**
+Make sure the path to your trained model checkpoint is correctly specified inside the `evaluate_bleu.py` file.
+
+```bash
+python evaluate_bleu.py
