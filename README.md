@@ -4,6 +4,16 @@ This repository contains a PyTorch implementation of the Transformer model, as i
 
 ---
 
+## Dataset
+
+This project uses the **cfilt/iitb-english-hindi** dataset, which is a parallel corpus of English and Hindi sentences. The dataset is automatically downloaded from the Hugging Face `datasets` library when you run the training script.
+
+-   **Source Language:** English (`en`)
+-   **Target Language:** Hindi (`hi`)
+-   **Source:** [Hugging Face Datasets - cfilt/iitb-english-hindi](https://huggingface.co/datasets/cfilt/iitb-english-hindi)
+
+The training script processes this data, builds the tokenizers for both languages, and prepares it for the model.
+
 ## Table of Contents
 
 - [Project Overview](#project-overview)
@@ -49,11 +59,24 @@ The training loss and validation character error rate (CER) are monitored throug
 **Validation CER:**
 ![](cer.png)
 
+### Key Achievements
+
+-   **Model Implementation:** A complete Transformer encoder-decoder model was built from scratch in PyTorch, totaling approximately **47.8 million** trainable parameters (`d_model = 512`).
+-   **Training:** The model was trained for **25 epochs** on an NVIDIA RTX 3050 GPU (4GB VRAM) using the Adam optimizer.
+-   **Dataset:** The model was trained on the **IITB parallel corpus**, which contains roughly 1.5 million English-Hindi sentence pairs.
+-   **End-to-End Pipeline:** The repository provides a full pipeline, including data preprocessing, training, evaluation scripts, and a demonstration notebook.
+
+### Performance
+
+-   **Translation Quality:** The model achieved a **BLEU score of 23.36**, which is a strong result comparable to other Transformer-based models on the same dataset.
+-   **ONNX Export and Inference:** The trained model was successfully exported to the ONNX format (190 MB file size). This enables fast inference speeds:
+    -   **CPU Latency:** ~33 ms per sentence.
+    -   **GPU Latency:** ~12 ms per sentence.
+
 ### Evaluation Metrics
 
 The model is evaluated on the following metrics:
 -   **BLEU (Bilingual Evaluation Understudy) Score:** Measures the similarity between the predicted and reference translations.
--   **WER (Word Error Rate):** Calculates the number of word substitutions, deletions, and insertions required to transform the predicted sentence into the target sentence.
 -   **CER (Character Error Rate):** Similar to WER, but operates at the character level.
 
 ### Translation Examples
@@ -160,3 +183,4 @@ Make sure the path to your trained model checkpoint is correctly specified insid
 
 ```bash
 python evaluate_bleu.py
+
